@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE COMPANHIA LTDA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #ffffff;
+            --secondary: #1a1a1a;
+            --accent: #888888;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --glass-effect: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            color: var(--primary);
+            font-family: 'Work Sans', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.03) 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        header {
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.1),
+                transparent);
+            padding: 3rem;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: var(--primary);
+            letter-spacing: -2px;
+            animation: fadeText 2s infinite alternate;
+        }
+
+        .leader {
+            text-align: center;
+            color: var(--accent);
+            font-family: 'Space Mono', monospace;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 4px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-family: 'Space Mono', monospace;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .staff-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .staff-member {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .staff-member:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: white;
+        }
+
+        .staff-member h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 1px;
+        }
+
+        .staff-member p {
+            color: var(--accent);
+        }
+
+        .warning-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+            font-family: 'Space Mono', monospace;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .rule-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .rule-item h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 1px;
+        }
+
+        .rule-item ul {
+            list-style-type: none;
+            margin-bottom: 1rem;
+        }
+
+        .rule-item li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .rule-item li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        @keyframes fadeText {
+            from { opacity: 0.8; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 2rem; }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card { margin: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">THE COMPANHIA LTDA</div>
+        <div class="leader">Líder: Hermes l grecco</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#staff"><i class="fas fa-users"></i> Staff</a></li>
+            <li><a href="#info"><i class="fas fa-info-circle"></i> Informações</a></li>
+            <li><a href="#rules"><i class="fas fa-book"></i> Regras</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="warning-box">
+            AVISO IMPORTANTE: Ao entrar no servidor do Discord, você tem 3 dias para migrar para a guilda no jogo.
+            Após esse período, será expulso do servidor e precisará de nova avaliação para reentrar.
+        </div>
+
+        <div class="card" id="staff">
+            <h2><i class="fas fa-users"></i> Staff</h2>
+            <div class="staff-list">
+                <div class="staff-member">
+                    <h3>Hermes l grecco</h3>
+                    <p>Líder da Guilda</p>
+                </div>
+                <div class="staff-member">
+                    <h3>Nekryon</h3>
+                    <p>Assuntos Diplomáticos, Recrutador e Braço Direito</p>
+                </div>
+                <div class="staff-member">
+                    <h3>Mitriuz</h3>
+                    <p>Puxador de Conteúdo e Braço Direito</p>
+                </div>
+                <div class="staff-member">
+                    <h3>LuizIV</h3>
+                    <p>Assuntos de Recrutamento, Encarregado de Recrutamento</p>
+                </div>
+                <div class="staff-member">
+                    <h3>Wesley</h3>
+                    <p>Encarregado de Assuntos Internos, Responsável Interno e Recrutador</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="info">
+            <h2><i class="fas fa-info-circle"></i> Requisitos Mínimos</h2>
+            <div class="rule-item">
+                <h3>Requisitos para Temporada (65 dias)</h3>
+                <ul>
+                    <li>Fama de Coleta: Mínimo 1.5M</li>
+                    <li>Fama PVE: Mínimo 30M</li>
+                    <li>Fama de Fabricação: Mínimo 1M</li>
+                </ul>
+                <p><strong>Observação:</strong> O não cumprimento destes requisitos resultará em avaliação para permanência na guilda.</p>
+            </div>
+        </div>
+
+        <div class="card" id="rules">
+            <h2><i class="fas fa-book"></i> Regras e Sistemas</h2>
+            <div class="rules-list">
+                <div class="rule-item">
+                    <h3>1. Banco da Guilda</h3>
+                    <ul>
+                        <li>Manutenção de 2M de prata por jogador em caixa</li>
+                        <li>Retiradas: 21h - 23h via staff/financeiro</li>
+                        <li>Reguir instantâneo garantido para todos os players</li>
+                    </ul>
+                </div>
+
+                <div class="rule-item">
+                    <h3>2. Conteúdo PVE</h3>
+                    <ul>
+                        <li>Progressão: Royal → Red → Black</li>
+                        <li>Dungeons de grupo, fixas, baús avalon</li>
+                        <li>Mentoria opcional disponível</li>
+                    </ul>
+                </div>
+
+                <div class="rule-item">
+                    <h3>3. Coleta & Crafting</h3>
+                    <ul>
+                        <li>Suporte da guilda para coleta em zonas seguras</li>
+                        <li>Guilda compra materiais dos membros quando necessário</li>
+                        <li>Vendas posteriores em mercado de Caerleon</li>
+                    </ul>
+                </div>
+
+                <div class="rule-item">
+                    <h3>4. Sistema Top 5</h3>
+                    <ul>
+                        <li>1º Lugar: 3M Ou montaria de elite</li>
+                        <li>2º Lugar: 2M</li>
+                        <li>3º Lugar: 1M</li>
+                        <li>4º e 5º Lugar: 600k</li>
+                    </ul>
+                </div>
+
+                <div class="rule-item">
+                    <h3>5. Taxa da Guilda</h3>
+                    <ul>
+                        <li>10% da prata do chão na temporada atual</li>
+                        <li>Reavaliação no fim da temporada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
